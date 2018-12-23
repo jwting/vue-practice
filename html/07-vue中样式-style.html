@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 第一种使用方式,直接在元素上通过style 书写样式对象 -->
+        <!-- <h1 :style="{color: 'red','font-weight': 200}">我是最可爱最善良的胖虎啊！！！！</h1> -->
+
+
+        <!-- 第二种方式：直接在对象中使用 -->
+        <!-- <h1 :style="styleObj1">我是最可爱最善良的胖虎啊！！！！</h1> -->
+
+
+        <!-- 第三种方式,在数组中放多个样式 -->
+        <h1 :style="[styleObj1,styleObj2]">我是最可爱最善良的胖虎啊！！！！</h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                styleObj1: {
+                    color: 'red',
+                    'font-weight': 200
+                },
+                styleObj2: {
+                    'font-style': 'italic'
+                }
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

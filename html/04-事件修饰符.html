@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue-2.4.0.js"></script>
+    <style>
+        .inner{
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.使用.stop阻止冒泡   只执行自身，不执行外面 -->
+        <!-- <div class="inner" @click='div1Handler'>
+            <input type="button" value="按钮" @click.stop='btnHandler'>
+        </div> -->
+        
+        
+        <!-- 2.使用.prevent 阻止默认跳转行为 -->
+        <a href="http://www.baidu.com" @click.prevent.once='linkClick'>跳转</a>
+        
+        
+        <!-- 3.使用.capture实现捕获触发事件机制   从外向内触发 -->
+        <!-- <div class="inner" @click.capture='div1Handler'>
+            <input type="button" value="按钮" @click='btnHandler'>
+        </div> -->
+        
+        
+        <!-- 4.使用.self实现只有点击当前元素的时候才会触发事件处理函数 -->        
+        <div class="inner" @click.self='div1Handler'>
+            <input type="button" value="按钮" @click='btnHandler'>
+        </div>
+
+        <!-- 5.使用.once 只触发一次事件 -->
+        <a href="http://www.baidu.com" @click.once='linkClick'>跳转</a>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                div1Handler() {
+                    console.log('这是触发了div的点击事件')
+                },
+                btnHandler() {
+                    console.log('这是触发了按钮的点击事件')
+                },
+                linkClick() {
+                    console.log('这是触发了链接的点击事件')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

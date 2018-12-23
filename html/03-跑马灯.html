@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue-2.4.0.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="动起来" v-on:click="star">
+        <input type="button" value="别浪了" v-on:click="stop">
+        <p> {{msg}} </p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "善良可爱的胖虎，撒浪嘿呦！！！",
+                IntervalId: null
+            },
+            methods: {
+                star() {
+                    if (this.IntervalId != null) return
+                    this.IntervalId = setInterval(() => {
+                        // 截取第一个字符，从第0项开始截取，截取第一个
+                        var star = this.msg.substring(0, 1);
+                        // 截取后面的字符，从第1项开始截取，截取所有
+                        var end = this.msg.substring(1);
+                        // 字符串拼接
+                        this.msg = end + star;
+                    }, 200)
+                },
+                stop() {
+                    clearInterval(this.IntervalId);
+                    // 每当清除了定时器之后，需要重新赋值IntervalId设置为null
+                    this.IntervalId = null
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
